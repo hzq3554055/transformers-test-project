@@ -1,0 +1,15 @@
+dataset:
+  name: imdb
+  split: train
+  streaming: false
+
+preprocessing:
+  max_length: 512
+  padding: max_length
+  truncation: true
+
+splits:
+  train_size: 0.8
+  eval_size: 0.1
+  test_size: 0.1
+  seed: 42

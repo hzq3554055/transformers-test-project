@@ -1,0 +1,24 @@
+model:
+  name: bert-base-uncased
+  task_type: classification
+  max_length: 512
+  device: auto
+
+training:
+  num_epochs: 3
+  batch_size: 16
+  learning_rate: 2e-5
+  weight_decay: 0.01
+  warmup_steps: 500
+  logging_steps: 100
+  eval_steps: 500
+  save_steps: 500
+
+data:
+  train_path: data/train.json
+  eval_path: data/eval.json
+  test_path: data/test.json
+
+logging:
+  level: INFO
+  log_file: logs/experiment.log
