@@ -1,0 +1,25 @@
+# Proxy Configuration for Hugging Face Hub
+# This file contains proxy settings for accessing Hugging Face models
+
+proxy:
+  enabled: true
+  http_proxy: "http://127.0.0.1:7897"
+  https_proxy: "http://127.0.0.1:7897"
+  
+# Hugging Face Hub settings
+huggingface:
+  hub_offline: false
+  datasets_offline: false
+  cache_dir: "./cache"
+  
+# Model download settings
+download:
+  resume_download: true
+  local_files_only: false
+  force_download: false
+  
+# Network settings
+network:
+  timeout: 30
+  retries: 3
+  verify_ssl: true

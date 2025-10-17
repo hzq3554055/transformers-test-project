@@ -30,69 +30,69 @@ import numpy as np
 
 class TestUtils:
     """Test cases for utility functions."""
-    
+
     def test_setup_logging(self):
         """Test logging setup."""
         logger = setup_logging(level="INFO")
         assert logger is not None
         assert logger.level == 20  # INFO level
-    
+
     def test_get_device(self):
         """Test device detection."""
         device = get_device()
         assert device in ["cpu", "cuda", "mps"]
-        
+
         # Test with specific device
         device = get_device("cpu")
         assert device == "cpu"
-    
+
     def test_set_seed(self):
         """Test seed setting."""
         set_seed(42)
-        
+
         # Test that seed is set
         random1 = np.random.random()
         set_seed(42)
         random2 = np.random.random()
-        
+
         # Should be the same with same seed
         assert random1 == random2
-    
+
     def test_load_and_save_config(self):
         """Test loading and saving configuration."""
         config = {
             "model": {"name": "bert-base-uncased"},
             "training": {"epochs": 3}
         }
-        
+
         with tempfile.TemporaryDirectory() as temp_dir:
             # Test JSON
             json_path = Path(temp_dir) / "config.json"
             save_config(config, str(json_path))
             loaded_config = load_config(str(json_path))
             assert loaded_config == config
-            
+
             # Test YAML
             yaml_path = Path(temp_dir) / "config.yaml"
             save_config(config, str(yaml_path))
             loaded_config = load_config(str(yaml_path))
             assert loaded_config == config
-    
+
     def test_create_experiment_dir(self):
         """Test creating experiment directory."""
         with tempfile.TemporaryDirectory() as temp_dir:
             exp_dir = create_experiment_dir(temp_dir, "test_experiment")
-            
+
             assert Path(exp_dir).exists()
             assert "test_experiment" in exp_dir
             assert Path(exp_dir).is_dir()
-    
+
     def test_format_time(self):
         """Test time formatting."""
         assert format_time(30) == "30.00s"
         assert format_time(90) == "1.50m"
         assert format_time(7200) == "2.00h"
-    
+
     def test_get_model_size(self):
         """Test getting model size information."""
         # Create a simple model
